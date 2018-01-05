@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.coo.mapper.ReplyMapper">
+  
+  <select id="list" resultType="ReplyVO">
+  	select * from
+  		tbl_reply
+  	where bno = #{bno, jdbcType=INTEGER}
+  		order by rno desc
+  
+  </select>
+  
+  <insert id="create">
+  	insert into 
+  		tbl_reply (rno, uno, bno, nickname, reptxt)
+	values
+		(seq_rno.nextval, #{uno, jdbcType=INTEGER}, 
+		#{bno, jdbcType=INTEGER}, #{nickname, jdbcType=VARCHAR },#{reptxt,  jdbcType=VARCHAR})
+  
+  </insert>
+  
+  <update id="update">
+  	update tbl_reply set reptxt = #{reptxt, jdbcType=VARCHAR } where rno = #{rno, jdbcType=INTEGER}
+  </update>
+  
+  <delete id="delete">
+  	delete from tbl_reply where rno=#{rno,jdbcType=INTEGER}
+  
+  </delete>
+  
+  <select id="replycnt" resultType="int">
+  
+	  select 
+	  	count(reptxt) 
+	  from tbl_reply
+		where bno = #{bno,jdbcType=INTEGER}
+  
+  </select>
+  
+  <select id="getBno" resultType="int">
+  	select bno from tbl_reply where rno = #{rno, jdbcType=INTEGER}
+  
+  </select>
+  
+  
+  </mapper>

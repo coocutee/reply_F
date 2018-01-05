@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.coo.mapper.UserMapper">
+  
+  	<insert id="create">
+	
+	insert into tbl_user (uno, id, pw, nickname)
+	values ( seq_uno.nextval, #{id, jdbcType=VARCHAR}, #{pw, jdbcType=VARCHAR},#{nickname, jdbcType=VARCHAR}  )
+	
+	</insert>
+	
+  <select id="login" resultType="UserVO">
+  
+  select * 
+  from tbl_user where id = #{id, jdbcType=VARCHAR} and pw = #{pw, jdbcType=VARCHAR}
+  
+  </select>
+  
+  <select id="checkID" resultType="UserVO">
+  	  select id
+  from tbl_user
+  where id = #{id, jdbcType=VARCHAR}
+  
+  </select>
+  
+  
+  </mapper>
