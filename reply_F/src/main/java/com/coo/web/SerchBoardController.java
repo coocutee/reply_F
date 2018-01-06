@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.coo.dao.ReplyDAO;
 import com.coo.domain.BoardVO;
 import com.coo.domain.PageMaker;
 import com.coo.domain.SearchCriteria;
 import com.coo.service.BoardService;
-import com.coo.service.ReplyService;
 
 @Controller
 @RequestMapping("/sboard/*")
@@ -28,6 +28,8 @@ public class SerchBoardController {
 	@Inject
 	BoardService service;
 
+	@Inject
+	ReplyDAO dao;
 	
 	@GetMapping(value="/list")
 	public void listPage(@ModelAttribute("cri") SearchCriteria cri, Model model, RedirectAttributes rttr)throws Exception{
@@ -77,6 +79,9 @@ public class SerchBoardController {
 		
 		//model에 아무런 이름없이 데이터를 넣으면 자동으로 클래스의 이름을 소문자로 시작해서 사용. BoardVO => boardVO로 저장됨!
 		model.addAttribute(service.view(bno));
+		
+
+		model.addAttribute(dao.nickname(bno));
 	} 
 	
 	@RequestMapping(value = "/modify", method = RequestMethod.GET)

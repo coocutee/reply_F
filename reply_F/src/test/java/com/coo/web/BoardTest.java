@@ -3,6 +3,7 @@ package com.coo.web;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.swing.plaf.synth.SynthSeparatorUI;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,6 +13,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.coo.dao.BoardDAO;
+import com.coo.dao.ReplyDAO;
 import com.coo.domain.BoardVO;
 import com.coo.domain.Criteria;
 import com.coo.domain.ReplyVO;
@@ -38,6 +40,9 @@ public class BoardTest {
 	
 	@Inject
 	ReplyService rservice;
+	
+	@Inject
+	ReplyDAO rdao;
 	
 	
 	@Test
@@ -108,7 +113,7 @@ public class BoardTest {
 	@Test
 	public void reptest()throws Exception{
 		
-		List<ReplyVO> list = rservice.repList(125);
+		List<ReplyVO> list = rservice.repList(224);
 		
 		for(ReplyVO vo : list){
 			logger.info(vo.getReptxt());
@@ -134,5 +139,16 @@ public class BoardTest {
 		int a = rservice.replycnt(125);
 		System.out.println(a);
 	}
-
+	
+	@Test
+	public void nick()throws Exception{
+		
+		List<ReplyVO> list = rdao.nickname(224);
+		
+//		for(ReplyVO vo : list ){
+//			logger.info(vo.getNickname());
+//		}
+		
+		System.out.println(rdao.nickname(224));
+	}
 }

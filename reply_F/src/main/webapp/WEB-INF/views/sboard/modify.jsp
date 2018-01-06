@@ -6,6 +6,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>Insert title here</title>
 </head>
+
+<style type="text/css">
+ a:link { color: black; text-decoration: none;}
+ a:visited { color: black; text-decoration: none;}
+ a:hover { color: black; text-decoration: underline;}
+</style>
+
 <body>
 
 <h1> 수정페이지 </h1>
@@ -34,8 +41,8 @@
 </div>
 
 <div>
-<button type="submit" class="btn_can"> 취소하기 </button>
 <button type="submit" class="btn_com"> 수정하기 </button>
+<button> <a href="javascript:history.back();">취소하기</a> </button>
 </div>
 
 </form>
@@ -47,8 +54,9 @@
 	$(document).ready(function(){
 		
 		$(".btn_can").on("click",function(){
-			self.location = "/sboard/list?page=${cri.page}&perPageNum=${cri.perPageNum}"+
-			  "&searchType=${cri.searchType}&keyword=${cri.keyword}";
+			//self.location = "/sboard/list?page=${cri.page}&perPageNum=${cri.perPageNum}"+
+			  //"&searchType=${cri.searchType}&keyword=${cri.keyword}";
+		
 		});
 		
 		$(".btn_com").on("click",function(){

@@ -98,6 +98,7 @@ line-height:16px;
 
 <h1> 목록보기 :) </h1>
 
+
 <form name="hidden" method="post"> 
 <input type="hidden" name="uno" value="${sessionScope.LOGIN.uno}">
 <input type="hidden" name="nickname" value="${sessionScope.LOGIN.nickname}">
@@ -135,6 +136,31 @@ line-height:16px;
 
 </table>
 
+<div class = "page">
+
+	<ul class="pagination">
+	
+		<c:if test="${pageMaker.prev}">
+			<li> <a 
+				href = "list${pageMaker.makeSearch(pageMaker.startPage -1)}">&laquo;</a> </li>
+		</c:if>
+	
+		<c:forEach begin = "${pageMaker.startPage}" end="${pageMaker.endPage }" var="idx">
+		<li
+		 <c:out value="${pageMaker.cri.page == idx? 'class=active':''}" />>
+			<a 
+				href = "list${pageMaker.makeSearch(idx)}"> ${idx} </a>
+		</li>
+		</c:forEach>
+		
+		<c:if test = "${pageMaker.next && pageMaker.endPage > 0 }">
+			<li> <a 
+				href = "list${pageMaker.makeSearch(pageMaker.endPage +1) }">&raquo;</a> </li>
+		</c:if>
+	</ul>
+
+</div>
+
 				<div class='box-body'>
 
 					<select name="searchType">
@@ -167,30 +193,6 @@ line-height:16px;
 
 				</div>
 
-<div class = "page">
-
-	<ul class="pagination">
-	
-		<c:if test="${pageMaker.prev}">
-			<li> <a 
-				href = "list${pageMaker.makeSearch(pageMaker.startPage -1)}">&laquo;</a> </li>
-		</c:if>
-	
-		<c:forEach begin = "${pageMaker.startPage}" end="${pageMaker.endPage }" var="idx">
-		<li
-		 <c:out value="${pageMaker.cri.page == idx? 'class=active':''}" />>
-			<a 
-				href = "list${pageMaker.makeSearch(idx)}"> ${idx} </a>
-		</li>
-		</c:forEach>
-		
-		<c:if test = "${pageMaker.next && pageMaker.endPage > 0 }">
-			<li> <a 
-				href = "list${pageMaker.makeSearch(pageMaker.endPage +1) }">&raquo;</a> </li>
-		</c:if>
-	</ul>
-
-</div>
 
 
 <c:if test="${not empty sessionScope.LOGIN.nickname}">
@@ -209,11 +211,7 @@ line-height:16px;
  <script>
 	var result = '${msg}'
 	
-	if(result == 'success'){
-		alert("글쓰기 완료!");
-	}
-	
-	else if(result == 'remove'){
+	 if(result == 'remove'){
 		alert("삭제되었습니다");
 	}
 	

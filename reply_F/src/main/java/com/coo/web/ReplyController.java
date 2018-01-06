@@ -14,9 +14,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.coo.domain.ReplyVO;
+import com.coo.domain.SearchCriteria;
 import com.coo.service.ReplyService;
 
 @RestController
@@ -85,5 +88,13 @@ public class ReplyController {
 		}
 		return entity;
 	}
+	
+//	@RequestMapping(value = "/remove",  method = RequestMethod.POST)
+//	public String removePOST( @RequestParam(value="rno") Integer rno, RedirectAttributes rttr) throws Exception{
+//		
+//	
+//		service.repRemove(rno);
+//		return "redirect:/view";
+//	}
 	
 }

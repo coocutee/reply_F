@@ -13,10 +13,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.coo.dao.ReplyDAO;
 import com.coo.domain.BoardVO;
 import com.coo.domain.Criteria;
 import com.coo.domain.PageMaker;
 import com.coo.service.BoardService;
+import com.coo.service.ReplyService;
 
 /**
  * Handles requests for the application home page.
@@ -26,7 +28,11 @@ import com.coo.service.BoardService;
 public class BoardController {
 	
 	@Inject
-	BoardService service;
+	private BoardService service;
+	@Inject
+	private ReplyService rservice;
+	@Inject
+	private ReplyDAO dao;
 	
 	private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
 	
@@ -81,6 +87,10 @@ public class BoardController {
 		
 		//model에 아무런 이름없이 데이터를 넣으면 자동으로 클래스의 이름을 소문자로 시작해서 사용. BoardVO => boardVO로 저장됨!
 		model.addAttribute(service.view(bno));
+		
+		model.addAttribute(rservice.repList(bno));
+
+		model.addAttribute("replynick",dao.nickname(bno));
 	} 
 	
 	@RequestMapping(value = "/modify", method = RequestMethod.GET)

@@ -47,8 +47,16 @@ public class ReplyDAOImpl implements ReplyDAO {
 	@Override
 	public int getBno(Integer rno) throws Exception {
 		// TODO Auto-generated method stub
-		return session.selectOne(namespace+"getBno",rno);
+		return session.selectOne(namespace+".getBno",rno);
 	}
+
+	@Override
+	public List<ReplyVO> nickname(Integer bno) throws Exception {
+		// TODO Auto-generated method stub
+		return session.selectList(namespace+".nickname",bno);
+	}
+
+
 
 
 }

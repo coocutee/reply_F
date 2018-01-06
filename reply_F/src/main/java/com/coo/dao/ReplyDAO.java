@@ -13,4 +13,5 @@ public interface ReplyDAO {
 	public int replycnt(Integer bno)throws Exception;
 	
 	public int getBno(Integer rno)throws Exception;
+	public List<ReplyVO> nickname(Integer bno)throws Exception;
 }
