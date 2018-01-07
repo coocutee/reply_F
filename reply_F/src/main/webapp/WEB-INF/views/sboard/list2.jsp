@@ -29,40 +29,32 @@ width:810px;
 margin:0 auto;}
 /* 만약 위와 테이블간의 여백을 띄우고 싶다면 0의 수치를 변경해주면됨 */
 
-/* ul { */
-/* list-style : none; */
-/* margin : 16px auto; */
-/* padding : 0; */
-/* height:30px; */
-/* width: 30%; */
-/* } */
-/*  li{ */
-/* margin : 0 0 0 0 ; */
-/* padding : 0 0 0 0 ; */
-/* border : 0; */
-/* float : left; */
-/* } */
-
-/* li:last-child{ */
-/* margin-left:10px;} */
-/*  ul li a{ */
-/*   display:block; */
-/*   color:#333333; */
-/* height:16px; */
-/* line-height:16px; */
-/*   width:20px; */
-/*   text-decoration:none; */
-
-/*   } */
-
-.page{
- display : block;
- text-align: center;
+ul {
+list-style : none;
+margin : 16px auto;
+padding : 0;
+height:30px;
+width: 30%;
+}
+ li{
+margin : 0 0 0 0 ;
+padding : 0 0 0 0 ;
+border : 0;
+float : left;
 }
 
-.page ul li a{
-flaot : none;
-}
+li:last-child{
+margin-left:10px;}
+ ul li a{
+  display:block;
+  color:#333333;
+height:16px;
+line-height:16px;
+  width:20px;
+  text-decoration:none;
+
+  }
+  
 
   
   table tr{
@@ -71,7 +63,7 @@ flaot : none;
   }
   
   table tr td{
-   border-bottom:1px solid skyblue;
+   border-bottom:1px solid #80c4c5;
    text-align: center;
    
   }
@@ -110,43 +102,18 @@ flaot : none;
  .tr_1{background-color: #45a4a6;
  color:#fff;}
 
- #logout, #login {
-   position: absolute;
-    top: 8px;
-    right: 16px;
-    font-size: 12px;
-}
-
-
 </style>
 <body>
 
-<div class="panel panel-default"> 
-<div class="panel-heading"><h4> LIST </h4></div>
-</div>
 
-
-
-<div class="login">
-
-<c:if test="${not empty sessionScope.LOGIN.nickname}">
-<button type="submit"class="btn btn-default btn-sm"  id = "logout" onclick="location.href='/user/logout'" name="logout"> 로그아웃 </button>
-</c:if>
-
-<c:if test="${empty sessionScope.LOGIN.nickname}">
-<button type="submit" class="btn btn-default btn-sm" id="login" onclick="location.href='/user/login'" name="login"> 로그인 </button>
-</c:if>
-</div>
+<h1> 목록보기 :) </h1>
 
 
 <form name="hidden" method="post"> 
 <input type="hidden" name="uno" value="${sessionScope.LOGIN.uno}">
 <input type="hidden" name="nickname" value="${sessionScope.LOGIN.nickname}">
 </form>
-
-
 <table class="tb_1" cellspacing="0" cellpadding="0">
-
 
 <tr >
 <td> No. </td>
@@ -200,18 +167,13 @@ flaot : none;
 			<li> <a 
 				href = "list${pageMaker.makeSearch(pageMaker.endPage +1) }">&raquo;</a> </li>
 		</c:if>
-					<c:if test="${not empty sessionScope.LOGIN.nickname}">
-<button type="submit" class="btn btn-default btn-sm" onclick="location.href='/sboard/register'" name ="register"> 글쓰기  </button>
-</c:if>
 	</ul>
-	
-	
 
 </div>
 
 				<div class='box-body'>
-<div class="col-sm-4">
-					<select name="searchType" class="form-control">
+
+					<select name="searchType">
 						<option value="n"
 							<c:out value="${cri.searchType == null?'selected':''}"/>>
 							---</option>
@@ -233,20 +195,24 @@ flaot : none;
 						<option value="tcw"
 							<c:out value="${cri.searchType eq 'tcw'?'selected':''}"/>>
 							제목or내용or작성자</option>
-					</select>
-					
-					
-					</div>
-					<div class="col-sm-2">
-					 <input class="form-control" type="text" name='keyword' id="keywordInput"
-						value='${cri.keyword }'> </div>
-					<button class="btn btn-default btn-sm" id='searchBtn'>검색</button>
-					<button class="btn btn-default btn-sm" id='list'>전체목록</button>
+					</select> <input type="text" name='keyword' id="keywordInput"
+						value='${cri.keyword }'>
+					<button id='searchBtn'>검색</button>
+					<button id='list'>전체목록</button>
 <!-- 					<button id='newBtn'>New Board</button> -->
 
 				</div>
 
 
+
+<c:if test="${not empty sessionScope.LOGIN.nickname}">
+<button type="submit" onclick="location.href='/sboard/register'" name ="register"> 글쓰기  </button>
+<button type="submit" onclick="location.href='/user/logout'" name="logout"> 로그아웃 </button>
+</c:if>
+
+<c:if test="${empty sessionScope.LOGIN.nickname}">
+<button type="submit" onclick="location.href='/user/login'" name="login"> 로그인 </button>
+</c:if>
 
 
 

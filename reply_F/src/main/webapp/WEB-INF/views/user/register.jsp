@@ -24,7 +24,7 @@
                 <p></p>
                 <div class="col-md-6">
                     <small>
-                    <a href="#">로그인</a> | <a href="/user/signUp">회원가입</a>
+                    <a href="/user/login">로그인</a> | <a href="/sboard/list">게시판</a>
                     </small></div>
                 
             </div>
@@ -52,125 +52,41 @@
                  
  
  
-        <form class="form-horizontal" role="form" method="post" action="javascript:alert( 'success!' );">
-            <div class="form-group">
-                <label for="provision" class="col-lg-2 control-label">회원가입약관</label>
-                <div class="col-lg-10" id="provision">
-                    <textarea class="form-control" rows="8" style="resize:none">
-약관동의
-                    </textarea>
-                    <div class="radio">
-                        <label>
-                            <input type="radio" id="provisionYn" name="provisionYn" value="Y" autofocus="autofocus" checked>
-                            동의합니다.
-                        </label>
-                    </div>
-                    <div class="radio">
-                        <label>
-                            <input type="radio" id="provisionYn" name="provisionYn" value="N">
-                            동의하지 않습니다.
-                        </label>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="memberInfo" class="col-lg-2 control-label">개인정보취급방침</label>
-                <div class="col-lg-10" id="memberInfo">
-                    <textarea class="form-control" rows="8" style="resize:none">
-개인정보의 항목 및 수집방법
-                    </textarea>
-                    <div class="radio">
-                        <label>
-                            <input type="radio" id="memberInfoYn" name="memberInfoYn" value="Y" checked>
-                            동의합니다.
-                        </label>
-                    </div>
-                    <div class="radio">
-                        <label>
-                            <input type="radio" id="memberInfoYn" name="memberInfoYn" value="N">
-                            동의하지 않습니다.
-                        </label>
-                    </div>
-                </div>
-            </div>
+        <form class="form-horizontal" role="form" method="post" action="register" id="registerPost">
+
             <div class="form-group" id="divId">
                 <label for="inputId" class="col-lg-2 control-label">아이디</label>
                 <div class="col-lg-10">
-                    <input type="text" class="form-control onlyAlphabetAndNumber" id="id" data-rule-required="true" placeholder="30자이내의 알파벳, 언더스코어(_), 숫자만 입력 가능합니다." maxlength="30">
+                    <input type="text" class="form-control onlyAlphabetAndNumber" id="id" name="id"data-rule-required="true" placeholder="30자이내의 알파벳, 언더스코어(_), 숫자만 입력 가능합니다." maxlength="30">
                 </div>
             </div>
-            <div class="form-group" id="divPassword">
-                <label for="inputPassword" class="col-lg-2 control-label">패스워드</label>
+            <div class="form-group" id="divpw">
+                <label for="inputpw" class="col-lg-2 control-label">패스워드</label>
                 <div class="col-lg-10">
-                    <input type="password" class="form-control" id="password" name="excludeHangul" data-rule-required="true" placeholder="패스워드" maxlength="30">
+                    <input type="password" class="form-control" id="pw" name="pw" data-rule-required="true" placeholder="패스워드" maxlength="30">
                 </div>
             </div>
-            <div class="form-group" id="divPasswordCheck">
-                <label for="inputPasswordCheck" class="col-lg-2 control-label">패스워드 확인</label>
+            <div class="form-group" id="divpwCheck">
+                <label for="inputpwCheck" class="col-lg-2 control-label">패스워드 확인</label>
                 <div class="col-lg-10">
-                    <input type="password" class="form-control" id="passwordCheck" data-rule-required="true" placeholder="패스워드 확인" maxlength="30">
+                    <input type="password" class="form-control" id="pwCheck" data-rule-required="true" placeholder="패스워드 확인" maxlength="30">
                 </div>
             </div>
-            <div class="form-group" id="divName">
-                <label for="inputName" class="col-lg-2 control-label">이름</label>
-                <div class="col-lg-10">
-                    <input type="text" class="form-control onlyHangul" id="name" data-rule-required="true" placeholder="한글만 입력 가능합니다." maxlength="15">
-                </div>
-            </div>
-             
+           
             <div class="form-group" id="divNickname">
-                <label for="inputNickname" class="col-lg-2 control-label">별명</label>
+                <label for="inputNickname" class="col-lg-2 control-label">닉네임</label>
                 <div class="col-lg-10">
-                    <input type="text" class="form-control" id="nickname" data-rule-required="true" placeholder="별명" maxlength="15">
+                    <input type="text" class="form-control" id="nickname" name="nickname" data-rule-required="true" placeholder="닉네임" maxlength="15">
                 </div>
             </div>
              
-            <div class="form-group" id="divEmail">
-                <label for="inputEmail" class="col-lg-2 control-label">이메일</label>
-                <div class="col-lg-10">
-                    <input type="email" class="form-control" id="email" data-rule-required="true" placeholder="이메일" maxlength="40">
-                </div>
             </div>
-            <div class="form-group" id="divPhoneNumber">
-                <label for="inputPhoneNumber" class="col-lg-2 control-label">휴대폰 번호</label>
-                <div class="col-lg-10">
-                    <input type="tel" class="form-control onlyNumber" id="phoneNumber" data-rule-required="true" placeholder="-를 제외하고 숫자만 입력하세요." maxlength="11">
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="inputPhoneNumber" class="col-lg-2 control-label">성별</label>
-                <div class="col-lg-10">
-                    <select class="form-control" id="gender">
-                        <option value="M">남</option>
-                        <option value="F">여</option>
-                    </select>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="inputEmailReceiveYn" class="col-lg-2 control-label">이메일 수신여부</label>
-                <div class="col-lg-10">
-                    <label class="radio-inline">
-                        <input type="radio" id="emailReceiveYn" name="emailReceiveYn" value="Y" checked> 동의합니다.
-                    </label>
-                    <label class="radio-inline">
-                        <input type="radio" id="emailReceiveYn" name="emailReceiveYn" value="N"> 동의하지 않습니다.
-                    </label>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="inputPhoneNumber" class="col-lg-2 control-label">SMS 수신여부</label>
-                <div class="col-lg-10">
-                    <label class="radio-inline">
-                        <input type="radio" id="smsReceiveYn" name="smsReceiveYn" value="Y" checked> 동의합니다.
-                    </label>
-                    <label class="radio-inline">
-                        <input type="radio" id="smsReceiveYn" name="smsReceiveYn" value="N"> 동의하지 않습니다.
-                    </label>
-                </div>
-            </div>
+            <div class="col-sm-3" style="text-align:center;">
+            
             <div class="form-group">
                 <div class="col-lg-offset-2 col-lg-10">
-                    <button type="submit" class="btn btn-default">Sign in</button>
+                    <button type="submit" id="regBtn" class="btn btn-default">Sign in</button>
+                </div>
                 </div>
             </div>
         </form>
@@ -218,31 +134,31 @@
                     }
                 });
                  
-                $('#password').keyup(function(event){
+                $('#pw').keyup(function(event){
                      
-                    var divPassword = $('#divPassword');
+                    var divpw = $('#divpw');
                      
-                    if($('#password').val()==""){
-                        divPassword.removeClass("has-success");
-                        divPassword.addClass("has-error");
+                    if($('#pw').val()==""){
+                        divpw.removeClass("has-success");
+                        divpw.addClass("has-error");
                     }else{
-                        divPassword.removeClass("has-error");
-                        divPassword.addClass("has-success");
+                        divpw.removeClass("has-error");
+                        divpw.addClass("has-success");
                     }
                 });
                  
-                $('#passwordCheck').keyup(function(event){
+                $('#pwCheck').keyup(function(event){
                      
-                    var passwordCheck = $('#passwordCheck').val();
-                    var password = $('#password').val();
-                    var divPasswordCheck = $('#divPasswordCheck');
+                    var pwCheck = $('#pwCheck').val();
+                    var pw = $('#pw').val();
+                    var divpwCheck = $('#divpwCheck');
                      
-                    if((passwordCheck=="") || (password!=passwordCheck)){
-                        divPasswordCheck.removeClass("has-success");
-                        divPasswordCheck.addClass("has-error");
+                    if((pwCheck=="") || (pw!=pwCheck)){
+                        divpwCheck.removeClass("has-success");
+                        divpwCheck.addClass("has-error");
                     }else{
-                        divPasswordCheck.removeClass("has-error");
-                        divPasswordCheck.addClass("has-success");
+                        divpwCheck.removeClass("has-error");
+                        divpwCheck.addClass("has-success");
                     }
                 });
                  
@@ -305,8 +221,8 @@
                     var provision = $('#provision');
                     var memberInfo = $('#memberInfo');
                     var divId = $('#divId');
-                    var divPassword = $('#divPassword');
-                    var divPasswordCheck = $('#divPasswordCheck');
+                    var divpw = $('#divpw');
+                    var divpwCheck = $('#divpwCheck');
                     var divName = $('#divName');
                     var divNickname = $('#divNickname');
                     var divEmail = $('#divEmail');
@@ -355,45 +271,45 @@
                     }
                      
                     //패스워드 검사
-                    if($('#password').val()==""){
+                    if($('#pw').val()==""){
                         modalContents.text("패스워드를 입력하여 주시기 바랍니다.");
                         modal.modal('show');
                          
-                        divPassword.removeClass("has-success");
-                        divPassword.addClass("has-error");
-                        $('#password').focus();
+                        divpw.removeClass("has-success");
+                        divpw.addClass("has-error");
+                        $('#pw').focus();
                         return false;
                     }else{
-                        divPassword.removeClass("has-error");
-                        divPassword.addClass("has-success");
+                        divpw.removeClass("has-error");
+                        divpw.addClass("has-success");
                     }
                      
                     //패스워드 확인
-                    if($('#passwordCheck').val()==""){
+                    if($('#pwCheck').val()==""){
                         modalContents.text("패스워드 확인을 입력하여 주시기 바랍니다.");
                         modal.modal('show');
                          
-                        divPasswordCheck.removeClass("has-success");
-                        divPasswordCheck.addClass("has-error");
-                        $('#passwordCheck').focus();
+                        divpwCheck.removeClass("has-success");
+                        divpwCheck.addClass("has-error");
+                        $('#pwCheck').focus();
                         return false;
                     }else{
-                        divPasswordCheck.removeClass("has-error");
-                        divPasswordCheck.addClass("has-success");
+                        divpwCheck.removeClass("has-error");
+                        divpwCheck.addClass("has-success");
                     }
                      
                     //패스워드 비교
-                    if($('#password').val()!=$('#passwordCheck').val() || $('#passwordCheck').val()==""){
+                    if($('#pw').val()!=$('#pwCheck').val() || $('#pwCheck').val()==""){
                         modalContents.text("패스워드가 일치하지 않습니다.");
                         modal.modal('show');
                          
-                        divPasswordCheck.removeClass("has-success");
-                        divPasswordCheck.addClass("has-error");
-                        $('#passwordCheck').focus();
+                        divpwCheck.removeClass("has-success");
+                        divpwCheck.addClass("has-error");
+                        $('#pwCheck').focus();
                         return false;
                     }else{
-                        divPasswordCheck.removeClass("has-error");
-                        divPasswordCheck.addClass("has-success");
+                        divpwCheck.removeClass("has-error");
+                        divpwCheck.addClass("has-success");
                     }
                      
                     //이름
@@ -410,9 +326,9 @@
                         divName.addClass("has-success");
                     }
                      
-                    //별명
+                    //닉네임
                     if($('#nickname').val()==""){
-                        modalContents.text("별명을 입력하여 주시기 바랍니다.");
+                        modalContents.text("닉네임을 입력하여 주시기 바랍니다.");
                         modal.modal('show');
                          
                         divNickname.removeClass("has-success");
@@ -458,18 +374,78 @@
             });
              
         </script>
+        
+        <script>
+	var pw = $("#pw").val();
+	var checkpw = $("#checkpw").val();
+	
+	$(function(){
+		$("#checkpw").keyup(function(){
+			if($("#pw").val() != $("#checkpw").val()) {
+	            $('font[name=check]').text('');
+	            $('font[name=check]').html("비밀번호를 확인해 주세요.");
+				
+			}else{
+	            $('font[name=check]').text('');
+	            $('font[name=check]').html("");
+			}
+
+		});
+		
+	});
+	
+
+
+</script>
+
+<script>
+
+var register = $("#registerPost");
+	
+	   $(document).ready(function() {
+		   
+		      $("#regBtn").on("click",function(event) {
+
+		    	  event.preventDefault();
+		            
+		         var id = $("#id").val();
+		         var pw = $('#pw').val();
+
+		                                          
+		            if (id == ""|| $('#id').val() == ""
+		                        || $('#pw').val() == ""
+		                        || $('#nickname').val() == ""
+		                        ) {
+		                           alert("항목을 입력해주세요");
+		                           return;
+		            }else{
+		               
+		               register.submit();
+		               
+		            }
+		               
+		         }); // end regBtn click...
+	   });
+</script>
+
+    <script>
+	var result = '${msg}'
+	
+	if(result == 'fail'){
+		alert("중복된 아이디입니다!");
+	}
+	
+</script>
                 <!--// 본문 들어가는 부분 -->
             <hr/>
             <!-- 푸터 들어가는 부분 -->
              
             <div>
                 <p class="text-center">
-                    <small><strong> 사거리</strong></small><br>
-                    <small>대표 : 홍길동 ㆍ 주소 :  사거리 ㆍ 사업자등록번호:123-12-12345 ㆍ 전화 : 064-123-1234</small><br>
-                    <small>Copyrightⓒ test.com All rights reserved.</small>
+                    <small><strong> INTER DATA</strong></small><br>
+                    <small>Copyrightⓒ cookie All rights reserved.</small>
                 </p>
             </div>
             <!--// 푸터 들어가는 부분 -->
-        </div>
     </body>
 </html>
