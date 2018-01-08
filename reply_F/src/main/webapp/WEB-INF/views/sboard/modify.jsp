@@ -90,6 +90,8 @@
 		$("#btn_com").on("click",function(){
 			alert("수정이 완료되었습니다!");
 			$("#modify").submit();
+			self.location = "/sboard/list?page=${cri.page}&perPageNum=${cri.perPageNum}"+
+			  "&searchType=${cri.searchType}&keyword=${cri.keyword}";
 		});
 		
 	});

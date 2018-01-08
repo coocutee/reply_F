@@ -14,10 +14,10 @@
   
   </select>
   
-  <select id="nickname" resultType="ReplyVO">
+  <select id="nickname" resultType="String">
   select nickname from
   		tbl_reply
-  	where bno = #{bno, jdbcType=INTEGER}
+  	where rno = #{rno, jdbcType=INTEGER}
   
   
   </select>

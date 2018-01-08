@@ -143,7 +143,6 @@ public class BoardTest {
 	@Test
 	public void nick()throws Exception{
 		
-		List<ReplyVO> list = rdao.nickname(224);
 		
 //		for(ReplyVO vo : list ){
 //			logger.info(vo.getNickname());

@@ -73,15 +73,13 @@ public class SerchBoardController {
 		return "redirect:/sboard/list";
 	}
 	
-	@GetMapping("/view")
+	@RequestMapping(value="/view" , method={RequestMethod.GET,RequestMethod.POST})
 	public void read( @RequestParam("bno") int bno, @ModelAttribute("cri")SearchCriteria cri, Model model) throws Exception{
 		logger.info("veiw page");
 		
 		//model에 아무런 이름없이 데이터를 넣으면 자동으로 클래스의 이름을 소문자로 시작해서 사용. BoardVO => boardVO로 저장됨!
 		model.addAttribute(service.view(bno));
-		
-
-		model.addAttribute(dao.nickname(bno));
+		//model.addAttribute(dao.nickname(bno));
 	} 
 	
 	@RequestMapping(value = "/modify", method = RequestMethod.GET)
@@ -106,7 +104,7 @@ public class SerchBoardController {
 		
 		logger.info("modify complete");
 		
-		return "redirect:/sboard/list";
+		return "redirect:/sboard/list?page="+cri.getPage();
 	}
 	
 	
@@ -121,6 +119,6 @@ public class SerchBoardController {
 		rttr.addFlashAttribute("keyword",cri.getKeyword());
 		rttr.addFlashAttribute("msg","SUCCESS");
 		
-		return "redirect:/sboard/list";
+		return "redirect:/sboard/list?page="+cri.getPage();
 	}
 }

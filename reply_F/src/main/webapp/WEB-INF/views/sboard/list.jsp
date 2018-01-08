@@ -113,7 +113,7 @@ flaot : none;
  #logout, #login {
    position: absolute;
     top: 8px;
-    right: 16px;
+    right: 400px;
     font-size: 12px;
 }
 
@@ -122,7 +122,10 @@ flaot : none;
 <body>
 
 <div class="panel panel-default"> 
-<div class="panel-heading"><h4> LIST </h4></div>
+<div class="panel-heading"><h4> LIST </h4>
+<c:if test="${not empty sessionScope.LOGIN.nickname}"> ${sessionScope.LOGIN.nickname}님 반갑습니다*^^*
+</c:if>
+ </div>
 </div>
 
 
@@ -150,10 +153,10 @@ flaot : none;
 
 <tr >
 <td> No. </td>
-<td> 제목 </td>
-<td> 작성자  </td>
-<td> 조회수 </td>
-<td> 작성일자 　  　　　 </td>
+<td> <strong> 제목 </strong> </td>
+<td> <strong> 작성자  </strong> </td>
+<td> <strong> 조회수  </strong> </td>
+<td> <strong> 작성일자　</strong> </td>
 </tr>
 </table>
 

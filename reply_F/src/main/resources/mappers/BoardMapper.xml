@@ -15,7 +15,7 @@
 	
 <select id="read" resultType="BoardVO">
 	select 
-		bno, title, content, nickname, regdate, replycnt
+		bno, title, content, nickname, regdate, replycnt, viewcnt
 	from 
 		tbl_board
 	where

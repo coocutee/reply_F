@@ -7,12 +7,39 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>Insert title here</title>
+<title>cookie - view </title>
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+<!-- 부가적인 테마 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+   <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 </head>
+
+<style>
+ul {
+list-style: none;
+padding-left : 0px;
+
+}
+
+.replyDelBtn {
+    background-color: white;
+    color: black;
+    border: 2px solid white; /* Green */
+}
+
+</style>
+
 <body>
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-<div> 
+<div class="panel panel-default"> 
+<div class="panel-heading"><h4>${boardVO.nickname}님의 글입니다!</h4></div>
+</div>
+
 
 <form id="FormObj" method="post"> 
 
@@ -25,53 +52,84 @@
 <input type="hidden" name="uno"  id="uno" value="${sessionScope.LOGIN.uno}">
 <input type="hidden" name="nickname" id="nickname" value="${sessionScope.LOGIN.nickname}">
 
-제목 : ${boardVO.title}
-<p>
-글쓴이 : ${boardVO.nickname}
-<p>
-내용 : ${boardVO.content}
+ <div class="container">
+            <hr/>
+            <div class="row">
+                <div class="col-md-10">
+                    <table class="table table-condensed">
+                        <thead>
+                            <tr align="center">
+                                <th width="10%">제목</th>
+                                <th width="60%"> ${boardVO.title }</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>작성일
+                                </td>
+                                <td>
+                                <fmt:formatDate pattern="yyyy-MM-dd HH:mm"  value = "${boardVO.regdate}"/> 
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>글쓴이
+                                </td>
+                                <td>
+                                ${boardVO.nickname } <span style='float:right'>조회 : ${boardVO.viewcnt }</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <p>  ${boardVO.content }</p>
+                        
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>                   
 
-</form>
+   
+     <table id="commentTable" class="table table-condensed"></table>
+  <table class="table table-condensed">
+       <tr>
+      <td>
+ <div class="reply">
+	<ul class = "replies" id="replies">
 
+
+	</ul>
 </div>
-
-<div class="btn">
-
-<c:if test="${sessionScope.LOGIN.nickname eq boardVO.nickname}">
-<button type="submit" class ="btn_modify"> 수정  </button>
-<button type="submit" class="btn_remove"> 삭제  </button>
-</c:if>
-<button type="submit" class="btn_list"> 목록  </button>
-
-
-
-
-</div>
-
-<div class="reply">
-	댓글리스트
-
-
-<c:forEach items='${replyVO}' var='replyVO' >
-	<c:if test='${sessionScope.LOGIN.nickname eq replyVO.nickname}'> 
-		<button type='submit' name='replyremove'> 삭제 </button> <button type='submit' name='replymodify'> 수정 </button> 
-</c:if>
-</c:forEach>
-
-
-
-<ul class = "replies" id="replies">
-
-
-</ul>
 
 <c:if test="${!empty sessionScope.LOGIN.nickname}">
-	<input type="text" id="reptxt" name="reptxt" value=""> 
+	<span class="form-inline" role="form">
 	
-	<button type="submit" id="replyBtn" name="replyBtn"> 확인 </button>
-</c:if>
+	<textarea id="reptxt" name="reptxt" class="form-control col-lg-12" style="width:100%" rows="4"></textarea>
 
-</div>
+	<div class="form-group">
+		<button type="button" id="replyBtn" name="replyBtn" class="btn btn-default">확인</button>
+		</div>
+	</span>
+	</c:if>
+	</td>
+	</tr>
+</table>
+
+    <table class="table table-condensed">
+ 	<thead>
+		<tr>  <td>
+	<span style='float:right'>
+		<c:if test="${sessionScope.LOGIN.nickname eq boardVO.nickname}">
+			<button type="submit"  class="btn btn-default" id ="btn_modify"> 수정  </button>
+			<button type="submit"  class="btn btn-default" id ="btn_remove"> 삭제  </button>
+		</c:if>
+	<button type="submit"  class="btn btn-default" id ="btn_list"> 목록  </button>
+
+				
+</span>
+</td>
+</tr>
+</thead>
+</table>
+</form> 
 
 <script>
 
@@ -81,7 +139,7 @@
 		console.log(nickname);
 		
 		//수정버튼 눌렀을때 이벤트 활성화
-		$(".btn_modify").on("click",function(){
+		$("#btn_modify").on("click",function(){
 			$("#FormObj").attr("action","/sboard/modify");
 			$("#FormObj").attr("method","get");
 			$("#FormObj").submit();
@@ -89,7 +147,7 @@
 		});
 		
 		//삭제버튼 이벤트
-		$(".btn_remove").on("click",function(){
+		$("#btn_remove").on("click",function(){
 			
 			if(confirm("정말 삭제하시겠습니까?") == true){
 			$("#FormObj").attr("action","/sboard/remove");
@@ -100,7 +158,7 @@
 		});
 		
 		//목록버튼 이벤트
-		$(".btn_list").on("click",function(){
+		$("#btn_list").on("click",function(){
 			$("#FormObj").attr("method","get");
 			$("#FormObj").attr("action","/sboard/list");
 			$("#FormObj").submit();
@@ -137,20 +195,30 @@
 function getListAll(){
 	$.getJSON("/replies/all/"+bno, function(data){
 		
-		
+
 		console.log("닉네임 :" +nickname);
-		
-		var str = "";
+
+		var str = ""; 
 	
 	$(data).each(
 			function(){
-				str += "<li data-rno='"+this.rno+"' class='replyLi'>"
-				+"<input type='hidden' class='thisrno' value='"+this.rno+"'>"+this.nickname + "<br> " + this.reptxt
+				str += "<div> <li data-rno='"+this.rno+"'value='"+this.rno+"' class='replyLi'>"
+				+"<input type='hidden' class='thisrno' value='"+this.rno+"'> <strong>"+this.nickname + "</strong> <br> " + this.reptxt 
 				+"<input type='hidden' class='thisreptxt' value='"+this.reptxt+"'>"
-				+"<c:if test='${sessionScope.LOGIN.nickname eq boardVO.nickname}'> <button type='submit' class='replyDelBtn'> 삭제 </button>"
-				+"</c:if> </li>";
+				+"<input type='hidden' class='thisname' id='thisname' value='"+this.nickname+"'>"
+				+"<c:if test='${sessionScope.LOGIN.nickname eq boardVO.nickname}'> <button type='submit' class='replyDelBtn'> x </button>"
+				+"</c:if> </li> </div>";
 			});	
-
+	
+// 	str += "<div> <li data-rno='"+this.rno+"'value='"+this.rno+"' class='replyLi'>"
+// 	+"<input type='hidden' class='thisrno' value='"+this.rno+"'> <strong>"+this.nickname + "</strong> <br> " + this.reptxt 
+// 	+"<input type='hidden' class='thisreptxt' value='"+this.reptxt+"'>"
+// 	+"<input type='hidden' class='thisname' id='thisname' value='"+this.nickname+"'>"
+// 	+"<c:if test='${sessionScope.LOGIN.nickname eq thisname.val()}'> <button type='submit' class='replyDelBtn'> x </button>"
+// 	+"</c:if> </li> </div>";
+	
+	console.log(data);
+	
 			$("#replies").html(str);
 			});
 		} getListAll();
@@ -191,9 +259,14 @@ function getListAll(){
 
 	$(document).on("click", ".replyDelBtn",function(event) {
 		
-		var rno = $(".thisrno").val();
+		var rno = this.closest("li").value;
+	
+		//var pr = $(".replyDelBtn").parent();
 		
-		confirm("댓글을 삭제하시겠습니까?");
+		console.log(rno);
+	
+		
+		if(confirm("댓글을 삭제하시겠습니까?")){
 	//	var reptxt = $("#thisreptxt").val();
 		$.ajax({
 			type : 'delete',
@@ -211,6 +284,9 @@ function getListAll(){
 				}
 			}
 		}); //ajax end
+		}else{
+			return false;
+		}
 	}); //event end	
 
 </script>

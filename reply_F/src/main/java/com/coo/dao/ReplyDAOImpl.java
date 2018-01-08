@@ -51,9 +51,9 @@ public class ReplyDAOImpl implements ReplyDAO {
 	}
 
 	@Override
-	public List<ReplyVO> nickname(Integer bno) throws Exception {
+	public String nickname(Integer rno) throws Exception {
 		// TODO Auto-generated method stub
-		return session.selectList(namespace+".nickname",bno);
+		 return session.selectOne(namespace+".nickname",rno);
 	}
 
 

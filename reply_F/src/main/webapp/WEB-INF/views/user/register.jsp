@@ -410,6 +410,7 @@ var register = $("#registerPost");
 		            
 		         var id = $("#id").val();
 		         var pw = $('#pw').val();
+		         var pwCheck = $("#pwCheck").val();
 
 		                                          
 		            if (id == ""|| $('#id').val() == ""
@@ -418,7 +419,10 @@ var register = $("#registerPost");
 		                        ) {
 		                           alert("항목을 입력해주세요");
 		                           return;
-		            }else{
+		            }else if (pw != pwCheck) {
+							  alert("비밀번호를 확인해주세요");
+							  return;
+		            } else{
 		               
 		               register.submit();
 		               
