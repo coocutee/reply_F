@@ -121,6 +121,11 @@ padding-left : 0px;
 			<button type="submit"  class="btn btn-default" id ="btn_modify"> 수정  </button>
 			<button type="submit"  class="btn btn-default" id ="btn_remove"> 삭제  </button>
 		</c:if>
+		<c:if test="${sessionScope.LOGIN.nickname ne boardVO.nickname and sessionScope.LOGIN.nickname ne null}">
+			<button type="submit"  class="btn btn-default" id ="btn_like">
+			 <span class='glyphicon glyphicon-thumbs-up' id='likeCntSpan'> ${boardVO.likecnt} </span>    </button> 
+			 <input type="hidden" name="likeCnt" id='likeCnt' value="${boardVO.likecnt}">
+		</c:if>
 	<button type="submit"  class="btn btn-default" id ="btn_list"> 목록  </button>
 
 				
@@ -198,6 +203,7 @@ function getListAll(){
 
 		console.log("닉네임 :" +nickname);
 
+		
 		var str = ""; 
 	
 	$(data).each(
@@ -264,7 +270,6 @@ function getListAll(){
 		//var pr = $(".replyDelBtn").parent();
 		
 		console.log(rno);
-	
 		
 		if(confirm("댓글을 삭제하시겠습니까?")){
 	//	var reptxt = $("#thisreptxt").val();
@@ -288,6 +293,75 @@ function getListAll(){
 			return false;
 		}
 	}); //event end	
+	
+	function disLikeBtn(){
+		$(document).on("click","#btn_like", function(event){
+			event.preventDefault();
+			
+			var bno = $("#bno").val();
+			var uno = $("#uno").val();
+			console.log("제발 디저블점,,,");
+			
+			$.ajax({
+	    		type : 'get',
+	    		url : '/sboard/likeHistory',
+	    		headers : {
+	    			"Content-Type" : "application/x-www-form-urlencoded;charset=UTF-8",
+	    			"X-HTTP-Method-Override" : "GET"
+	    		},
+	    		dataType : 'text',
+	    		data : {bno : bno, uno : uno},
+	    		success : function(result) {
+	    				
+	    			if(result != 0){
+	    				event.preventDefault();
+			    				alert('이미 추천하셨습니다');
+		    					$("#btn_like").attr('disabled',true);
+		    					stopPropagation();
+		    					return false;
+	    				}else{ 
+	    					//좋아요!!!!!!!!!!!!!!!!!!!!!!
+	    					$(document).on("click","#btn_like", function(event){
+	    						event.preventDefault();
+	    							
+	    						var bno = $("#bno").val();
+	    						var uno = $("#uno").val();
+	    						var likeCnt = $("#likeCnt");
+	    						var $this = $("#btn_like");	
+	    						var like = $("#likeCnt").val();
+	    						
+	    						console.log(bno);
+	    						console.log(uno);
+	    						console.log("보드브이오"+like);
+	    									
+	    						$.ajax({
+	    				    		type : 'get',
+	    				    		url : '/sboard/addlikeCnt',
+	    				    		headers : {
+	    				    			"Content-Type" : "application/x-www-form-urlencoded;charset=UTF-8",
+	    				    			"X-HTTP-Method-Override" : "GET"
+	    				    		},
+	    				    		dataType : 'text',
+	    				    		data : {bno : bno, uno:uno},
+	    				    		success : function(result) {    	
+	    				    			console.log(result);
+	    				   						alert("추천완료염");
+	    				   						//$("#btn_like").attr('disabled',true);
+	    					    				//location.reload();
+	    				   						$("#likeCntSpan").text(result);
+	    				   						$this.attr('disabled',true);
+	    					    			}
+	    				    		});
+	    									
+	    					}); //좋아요 ajax end
+	    				}
+	    			}
+	    		});
+			
+		});
+		} disLikeBtn();
+	
+
 
 </script>
 

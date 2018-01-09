@@ -150,4 +150,18 @@ public class BoardTest {
 		
 		System.out.println(rdao.nickname(224));
 	}
+	
+	@Test
+	public void likdhistory()throws Exception{
+		BoardVO vo = new BoardVO();
+		vo.setBno(252);
+		vo.setUno(44);
+		System.out.println(service.likeHistory(vo));
+	}
+	
+	@Test
+	public void readlike()throws Exception{
+
+		System.out.println(service.readLikeCnt(255));
+	}
 }

@@ -73,4 +73,32 @@ public class BoardServiceImpl implements BoardService {
 			dao.viewCnt(bno);
 	}
 
+	@Transactional
+	@Override
+	public void addLikeCnt(BoardVO vo) throws Exception {
+	
+		//like카운트 증가
+		dao.addLikeCnt(vo);
+		//history에 집어넣음
+		dao.updateLike(vo);
+	}
+
+	@Override
+	public void updateLike(BoardVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		dao.updateLike(vo);
+	}
+
+	@Override
+	public Integer likeHistory(BoardVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.likeHistory(vo);
+	}
+
+	@Override
+	public Integer readLikeCnt(Integer bno) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.readLikeCnt(bno);
+	}
+
 }

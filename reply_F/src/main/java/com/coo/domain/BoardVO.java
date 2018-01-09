@@ -14,7 +14,14 @@ public class BoardVO {
 	Date updatedate;
 	Integer viewcnt;
 	Integer replycnt;
+	Integer likecnt;
 	
+	public Integer getLikecnt() {
+		return likecnt;
+	}
+	public void setLikecnt(Integer likecnt) {
+		this.likecnt = likecnt;
+	}
 	public Integer getReplycnt() {
 		return replycnt;
 	}
@@ -79,7 +86,7 @@ public class BoardVO {
 	public String toString() {
 		return "BoardVO [bno=" + bno + ", uno=" + uno + ", nickname=" + nickname + ", pw=" + pw + ", title=" + title
 				+ ", content=" + content + ", regdate=" + regdate + ", updatedate=" + updatedate + ", viewcnt="
-				+ viewcnt + ", replycnt=" + replycnt + "]";
+				+ viewcnt + ", replycnt=" + replycnt + ", likecnt=" + likecnt + "]";
 	}
 	
 	

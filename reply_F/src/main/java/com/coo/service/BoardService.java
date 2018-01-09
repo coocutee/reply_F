@@ -20,4 +20,9 @@ public interface BoardService {
 	public int listSearchCount(SearchCriteria cri)throws Exception;
 	
 	public void viewCnt(int bno)throws Exception;
+	
+	public void addLikeCnt(BoardVO vo) throws Exception;
+	public void updateLike(BoardVO vo)throws Exception;
+	public Integer likeHistory(BoardVO vo)throws Exception;
+	public Integer readLikeCnt(Integer bno)throws Exception;
 }

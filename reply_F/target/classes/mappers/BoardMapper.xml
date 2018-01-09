@@ -15,7 +15,7 @@
 	
 <select id="read" resultType="BoardVO">
 	select 
-		bno, title, content, nickname, regdate, replycnt, viewcnt
+		bno, title, content, nickname, regdate, replycnt, viewcnt, likecnt
 	from 
 		tbl_board
 	where
@@ -45,6 +45,29 @@
   update tbl_board 
   set replycnt = replycnt + #{amount, jdbcType=INTEGER} where bno = #{bno, jdbcType=INTEGER}
 	</update>
+	
+		<update id="addLikeCnt">
+  update tbl_board 
+  set likecnt = likecnt + 1
+   where bno = #{bno, jdbcType=INTEGER}
+	</update>
+	
+		<select id="readLikeCnt" resultType="Integer">
+  select likecnt from tbl_board
+  where bno = #{bno, jdbcType=INTEGER}
+	</select>
+	
+		<select id="likeHistory" resultType="Integer">
+  select count(bno) from tbl_like
+  where bno = #{bno, jdbcType=INTEGER} and uno = #{uno, jdbcType=INTEGER}
+	</select>
+	
+	<insert id="updateLike" parameterType="BoardVO">
+		insert into tbl_like(bno, uno)
+		values ( #{bno,jdbcType=INTEGER} , #{uno,jdbcType=INTEGER})
+	
+	</insert>
+	
 	
 	<select id="listAll" resultType="BoardVO">
 		

@@ -24,4 +24,8 @@ public interface BoardDAO {
 	
 	public void updateReplyCnt(int bno, int amount)throws Exception;
 
+	public void addLikeCnt(BoardVO vo) throws Exception;
+	public void updateLike(BoardVO vo)throws Exception;
+	public Integer likeHistory(BoardVO vo)throws Exception;
+	public Integer readLikeCnt(Integer bno)throws Exception;
 }

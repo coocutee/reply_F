@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.coo.dao.ReplyDAO;
@@ -129,5 +130,34 @@ public class BoardController {
 		
 		return "redirect:/board/listPage";
 	}
+	
+	@GetMapping("/addlikeCnt")
+
+	public String likecnt(BoardVO vo, Model model) throws Exception{
+		
+		logger.info("like가 하나 추가되었습니당!");
+		service.addLikeCnt(vo);
+	
+		logger.info("addlikeCnt" + vo);
+		int bno = vo.getBno();
+
+		return "redirect:/sboard/view?bno="+bno; 
+	}
+	
+//	@GetMapping("/likeHistory")
+//	@ResponseBody
+//	public String likeHistory(@RequestParam("bno") int bno, @RequestParam("uno") int uno) throws Exception{
+//		
+//		logger.info("like 몇개인지 셉니다");
+//
+//		BoardVO vo = new BoardVO();
+//		
+//		vo.setBno(bno);
+//		vo.setUno(uno);
+//		
+//		logger.info(vo.toString());
+//	
+//		return service.likeHistory(vo); 
+//	}
 	
 }

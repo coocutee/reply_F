@@ -104,4 +104,28 @@ public class BoardDAOImpl implements BoardDAO {
 		session.update(namespace+".updateReplyCnt",paramMap);
 	}
 
+	@Override
+	public void addLikeCnt(BoardVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		session.selectOne(namespace+".addLikeCnt",vo);
+	}
+
+	@Override
+	public void updateLike(BoardVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		session.update(namespace+".updateLike",vo);
+	}
+
+	@Override
+	public Integer likeHistory(BoardVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return session.selectOne(namespace+".likeHistory",vo);
+	}
+
+	@Override
+	public Integer readLikeCnt(Integer bno) throws Exception {
+		// TODO Auto-generated method stub
+		return session.selectOne(namespace+".readLikeCnt",bno);
+	}
+
 }
