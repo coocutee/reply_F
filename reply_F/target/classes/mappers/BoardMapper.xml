@@ -8,7 +8,8 @@
 
 	<insert id="create" >
 	
-	insert into tbl_board(bno,uno,nickname,title,content)
+	insert into 
+		tbl_board(bno,uno,nickname,title,content)
 	values (seq_bno.nextval, #{uno, jdbcType=INTEGER}, #{nickname, jdbcType=VARCHAR },#{title,  jdbcType=VARCHAR}, #{content,  jdbcType=VARCHAR})
 	
 	</insert>

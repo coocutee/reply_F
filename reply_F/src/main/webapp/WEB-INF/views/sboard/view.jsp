@@ -321,7 +321,7 @@ function getListAll(){
 		    					return false;
 	    				}else{ 
 	    					//좋아요!!!!!!!!!!!!!!!!!!!!!!
-	    					$(document).on("click","#btn_like", function(event){
+	    				
 	    						event.preventDefault();
 	    							
 	    						var bno = $("#bno").val();
@@ -351,9 +351,9 @@ function getListAll(){
 	    				   						$("#likeCntSpan").text(result);
 	    				   						$this.attr('disabled',true);
 	    					    			}
-	    				    		});
+	    				    		}); //좋아요 ajax end
 	    									
-	    					}); //좋아요 ajax end
+	    	
 	    				}
 	    			}
 	    		});
