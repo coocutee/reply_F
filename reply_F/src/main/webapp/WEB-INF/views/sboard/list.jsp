@@ -16,6 +16,17 @@
    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 
 
+
+<!-- Magnific Popup core CSS file -->
+<link rel="stylesheet" href="../resources/magnific-popup.css">
+
+<!-- jQuery 1.7.2+ or Zepto.js 1.0+ -->
+
+<!-- Magnific Popup core JS file -->
+<script src="../resources/jquery.magnific-popup.js"></script>
+
+
+
 <title>cookie-list</title>
 </head>
 
@@ -115,6 +126,34 @@ flaot : none;
     top: 8px;
     right: 400px;
     font-size: 12px;
+}
+
+/* 구글모달창 ! */
+
+.mfp-fade.mfp-bg {
+	opacity: 0;
+	-webkit-transition: all 0.15s ease-out; 
+	-moz-transition: all 0.15s ease-out; 
+	transition: all 0.15s ease-out;
+}
+.mfp-fade.mfp-bg.mfp-ready {
+	opacity: 0.8;
+}
+.mfp-fade.mfp-bg.mfp-removing {
+	opacity: 0;
+}
+
+.mfp-fade.mfp-wrap .mfp-content {
+	opacity: 0;
+	-webkit-transition: all 0.15s ease-out; 
+	-moz-transition: all 0.15s ease-out; 
+	transition: all 0.15s ease-out;
+}
+.mfp-fade.mfp-wrap.mfp-ready .mfp-content {
+	opacity: 1;
+}
+.mfp-fade.mfp-wrap.mfp-removing .mfp-content {
+	opacity: 0;
 }
 
 
@@ -249,13 +288,14 @@ flaot : none;
 
 				</div>
 
-
+<a class="popup-gmaps" href="https://maps.google.com/maps?q=221B+Baker+Street,+London,+United+Kingdom&amp;hl=en&amp;t=v&amp;hnear=221B+Baker+St,+London+NW1+6XE,+United+Kingdom">Open Google Map</a>
 
 
 
 <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 
  <script>
+
 	var result = '${msg}'
 	
 	 if(result == 'remove'){
@@ -267,6 +307,18 @@ flaot : none;
 
 	<script>
 	$(document).ready(function() {
+		
+		$('.popup-gmaps').magnificPopup({
+			disableOn: 700,
+			type: 'iframe',
+			mainClass: 'mfp-fade',
+			removalDelay: 160,
+			preloader: false,
+
+			fixedContentPos: false
+		});
+		
+		
 			$('#searchBtn').on("click",function(event) {
 				self.location = "list"
 					+ '${pageMaker.makeQuery(1)}'
