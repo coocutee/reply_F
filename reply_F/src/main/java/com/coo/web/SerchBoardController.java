@@ -64,7 +64,16 @@ public class SerchBoardController {
 		logger.info("register POST...");
 		logger.info(vo.toString());
 		
-		System.out.println("테스트!!!!!!!!!!!!!!!!!!"+vo);
+		String title = vo.getTitle();
+		String title2 = vo.getTitle();
+		title = title.replace("<", "&lt;");
+		title2 = title.replace(">", "&gt;");
+		vo.setTitle(title);
+		vo.setTitle(title2);
+		
+		String con = vo.getContent();
+		con = con.replace("<", "&lt;");
+		vo.setContent(con);
 		
 		service.register(vo);
 		//브라우저까지는 전송되지만 uri에는 보이지 않는 숨겨진 형태로 전송!

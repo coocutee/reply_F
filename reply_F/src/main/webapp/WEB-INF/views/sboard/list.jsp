@@ -18,12 +18,12 @@
 
 
 <!-- Magnific Popup core CSS file -->
-<link rel="stylesheet" href="../resources/magnific-popup.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.css">
 
 <!-- jQuery 1.7.2+ or Zepto.js 1.0+ -->
 
 <!-- Magnific Popup core JS file -->
-<script src="../resources/jquery.magnific-popup.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.js"></script>
 
 
 
@@ -292,7 +292,6 @@ flaot : none;
 
 
 
-<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 
  <script>
 
